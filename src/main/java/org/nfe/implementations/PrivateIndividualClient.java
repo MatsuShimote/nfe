@@ -33,4 +33,8 @@ public class PrivateIndividualClient extends People {
   public void setName(String name) {
     this.name = name;
   }
+
+    public void create(Scanner input) {
+
+  }
 }

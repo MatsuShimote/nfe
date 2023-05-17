@@ -66,4 +66,8 @@ public class Shipping {
   public void setVehicle(Vehicle vehicle) {
     this.vehicle = vehicle;
   }
+
+  public void create(Scanner input) {
+
+  }
 }
