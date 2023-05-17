@@ -115,7 +115,17 @@ public class BankVoucher extends Billing {
 
     this.setType(type);
     this.setCode(code);
+    this.setEmissionDate(emissionDate);
     this.setAccessKey(accessKey);
     this.setProtocol(protocol);
+  }
+
+  public void output() {
+    System.out.println("Fatura:");
+    System.out.println("forma de pagamento: " + this.getType());
+    System.out.println("código: " + this.getCode());
+    System.out.println("data emissão: " + this.getEmissionDate());
+    System.out.println("chave de acesso: " + this.getAccessKey());
+    System.out.println("protocolo: " + this.getProtocol());
   }
 }

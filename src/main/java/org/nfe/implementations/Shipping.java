@@ -102,4 +102,15 @@ public class Shipping extends Entity {
 //    this.setPrivateIndividualClient();
 //    this.setShippingCompany(new ShippingCompany());
   }
+
+  public void output() {
+    System.out.println("Envio:");
+    this.getShippingCompany().output();
+    System.out.println("peso bruto: " + this.getGrossWeight());
+    System.out.println("peso liquido: " + this.getNetWeight());
+    this.getBusinessClient().output();
+    this.getPrivateIndividualClient().output();
+    this.getSupplier().output();
+    this.getVehicle().output();
+  }
 }

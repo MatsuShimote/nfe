@@ -29,4 +29,10 @@ public class Vehicle {
   public void setUf(String uf) {
     this.uf = uf;
   }
+
+  public void output() {
+    System.out.println("Veiculo:");
+    System.out.println("placa: " + this.getPlate());
+    System.out.println("UF: " + this.getUf());
+  }
 }

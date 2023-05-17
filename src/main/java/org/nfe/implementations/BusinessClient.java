@@ -57,4 +57,11 @@ public class BusinessClient extends People {
     this.setCompanyName(companyName);
     this.setStateSubscription(stateSubscription);
   }
+
+  public void output() {
+    System.out.println("Cliente Empresarial:");
+    System.out.println("nome empresa: " + this.getCompanyName());
+    System.out.println("cnpj: " + this.getCnpj());
+    System.out.println("inscricao estadual: " + this.getStateSubscription());
+  }
 }

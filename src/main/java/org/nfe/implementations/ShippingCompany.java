@@ -58,4 +58,12 @@ public class ShippingCompany extends People {
   public void setAntt(int antt) {
     this.antt = antt;
   }
+
+  public void output() {
+    System.out.println("Transportadora:");
+    System.out.println("companha: " + this.getCompanyName());
+    System.out.println("inscricao estadual: " + this.getStateSubscription());
+    System.out.println("ANTT: " + this.getAntt());
+    this.getVehicles().forEach(Vehicle::output);
+  }
 }

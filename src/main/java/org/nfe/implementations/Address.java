@@ -93,6 +93,15 @@ public class Address extends Entity {
     this.setNeighborhood(neighborhood);
     this.setRoad(road);
     this.setCep(cep);
+  }
 
+  public void output() {
+    System.out.println("Endereço:");
+    System.out.println("cep: " + this.getCep());
+    System.out.println("cidade: " + this.getCity());
+    System.out.println("estado: " + this.getState());
+    System.out.println("rua: " + this.getRoad());
+    System.out.println("número: " + this.getNumber());
+    System.out.println("bairro: " + this.getNeighborhood());
   }
 }

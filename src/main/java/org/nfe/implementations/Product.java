@@ -129,4 +129,18 @@ public class Product extends Entity {
 //    TODO
 
   }
+
+  public void output() {
+    System.out.println("Produto:");
+    System.out.println("nome: " + this.getName());
+    System.out.println("id: " + this.getId());
+    System.out.println("preço: " + this.getPrice());
+    System.out.println("base IPI: " + this.getIpiBasePrice());
+    System.out.println("base PIS: " + this.getPisBasePrice());
+    System.out.println("base COFINS: " + this.getCofinsBasePrice());
+    System.out.println("CFOP: " + this.getCfop());
+    System.out.println("CST: " + this.getCst());
+    System.out.println("NCM: " + this.getNcm());
+    System.out.println("quantidade unitária: " + this.getQuantity());
+  }
 }
