@@ -1,6 +1,11 @@
 package org.nfe.implementations;
 
-public class Address {
+import org.nfe.abstracts.Entity;
+import org.nfe.abstracts.InputTypes;
+
+import java.util.Scanner;
+
+public class Address extends Entity {
     private String city;
     private String cep;
     private String road;
@@ -74,7 +79,7 @@ public class Address {
     this.road = road;
   }
 
-  public create(Scanner input) {
+  public void create(Scanner input) {
     String cep = (String) this.inputWithoutException(input, "Digite o cep: ", InputTypes.STRING);
     String city = (String) this.inputWithoutException(input, "Digite a cidade: ", InputTypes.STRING);
     String state = (String) this.inputWithoutException(input, "Digite o estado: ", InputTypes.STRING);

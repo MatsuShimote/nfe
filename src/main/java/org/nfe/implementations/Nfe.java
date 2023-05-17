@@ -113,13 +113,13 @@ public class Nfe extends Sale {
     Supplier supplier = new Supplier();
 
     int id = (int) this.inputWithoutException(input, "id: ", InputTypes.INT);
-    address.create();
-    shipping.create();
-    businessClient.create();
-    privateIndividualClient.create();
-    supplier.create();
-    product.create();
-    bankVoucher.create();
+    address.create(input);
+    shipping.create(input);
+    businessClient.create(input);
+    privateIndividualClient.create(input);
+    supplier.create(input);
+    product.create(input);
+    bankVoucher.create(input);
 
     products.add(product);
 

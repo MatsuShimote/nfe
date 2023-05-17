@@ -1,6 +1,9 @@
 package org.nfe.implementations;
 
+import org.nfe.abstracts.InputTypes;
 import org.nfe.abstracts.People;
+
+import java.util.Scanner;
 
 public class BusinessClient extends People {
   private String cnpj;
@@ -45,7 +48,7 @@ public class BusinessClient extends People {
     this.stateSubscription = stateSubscription;
   }
 
-  public create(Scanner input) {
+  public void create(Scanner input) {
     String cnpj = (String) this.inputWithoutException(input, "Digite o cnpj: ", InputTypes.STRING);
     String companyName = (String) this.inputWithoutException(input, "Digite o nome da Empresa: ", InputTypes.STRING);
     String stateSubscription = (String) this.inputWithoutException(input, "Digite a Inscricao estadual: ", InputTypes.STRING);

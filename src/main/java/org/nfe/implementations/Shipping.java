@@ -1,6 +1,11 @@
 package org.nfe.implementations;
 
-public class Shipping {
+import org.nfe.abstracts.Entity;
+import org.nfe.abstracts.InputTypes;
+
+import java.util.Scanner;
+
+public class Shipping extends Entity {
   private ShippingCompany shippingCompany;
   private double grossWeight;
   private double netWeight;
@@ -69,5 +74,15 @@ public class Shipping {
 
   public void create(Scanner input) {
 
+//    TODO
+//    String shippingCompany = (String) this.inputWithoutException(input, "Digite o nome da empresa de envio", InputTypes.STRING);
+//
+//    this.setBusinessClient();
+//    this.setGrossWeight();
+//    this.setSupplier();
+//    this.setNetWeight();
+//    this.setVehicle();
+//    this.setPrivateIndividualClient();
+//    this.setShippingCompany(new ShippingCompany());
   }
 }

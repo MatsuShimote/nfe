@@ -2,6 +2,8 @@ package org.nfe.implementations;
 
 import org.nfe.abstracts.People;
 
+import java.util.Scanner;
+
 public class PrivateIndividualClient extends People {
   private String cpf;
   private String name;
@@ -35,6 +37,6 @@ public class PrivateIndividualClient extends People {
   }
 
     public void create(Scanner input) {
-
+// TODO
   }
 }

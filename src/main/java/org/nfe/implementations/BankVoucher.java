@@ -1,6 +1,9 @@
 package org.nfe.implementations;
 
 import org.nfe.abstracts.Billing;
+import org.nfe.abstracts.InputTypes;
+
+import java.util.Scanner;
 
 enum BankVoucherTypes {
   INPUT, OUTPUT
@@ -103,7 +106,7 @@ public class BankVoucher extends Billing {
     this.protocol = protocol;
   }
 
-  public create(Scanner input) {
+  public void create(Scanner input) {
     BankVoucherTypes type = (BankVoucherTypes) this.inputWithoutException(input, "Digite o tipo: ", InputTypes.STRING);
     int code = (int) this.inputWithoutException(input, "Digite o codigo: ", InputTypes.INT);
     String emissionDate = (String) this.inputWithoutException(input, "Digite a data de emissao: ", InputTypes.STRING);

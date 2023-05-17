@@ -1,6 +1,11 @@
 package org.nfe.implementations;
 
-public class Product {
+import org.nfe.abstracts.Entity;
+import org.nfe.abstracts.InputTypes;
+
+import java.util.Scanner;
+
+public class Product extends Entity {
   private String name;
   private int id;
   private double price;
@@ -117,10 +122,11 @@ public class Product {
     this.ncm = ncm;
   }
 
-  public create(Scanner input) {
+  public void create(Scanner input) {
     int id = (int) this.inputWithoutException(input, "Digite o id: ", InputTypes.INT);
     String name = (String) this.inputWithoutException(input, "Digite o nome: ", InputTypes.STRING);
-    
+
+//    TODO
 
   }
 }
