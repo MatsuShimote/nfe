@@ -125,11 +125,11 @@ public class NfesRepository implements RepositoryInterface<Nfe> {
   }
 
   public Nfe findByClientCnpjOrCpf(String cnpjOrCpf) throws EntityNotFoundException {
-//    for (int i = 0; i < repository.size(); i++) {
-//      if (repository.get(i).companyName.equals(companyName)) {
-//        return repository.get(i);
-//      }
-//    }
+    for (int i = 0; i < repository.size(); i++) {
+      if (repository.get(i).getPrivateIndividualClient().getCpf().equals(cnpjOrCpf) || repository.get(i).getBusinessClient().getCnpj().equals(cnpjOrCpf)) {
+        return repository.get(i);
+      }
+    }
 
     throw new EntityNotFoundException("Nfe not found");
   }

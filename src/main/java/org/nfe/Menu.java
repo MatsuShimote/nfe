@@ -7,6 +7,7 @@
  */
 package org.nfe;
 
+import org.nfe.errors.EntityNotFoundException;
 import org.nfe.errors.ValidationException;
 import org.nfe.implementations.Nfe;
 import org.nfe.repositories.NfesRepository;
@@ -23,70 +24,167 @@ public class Menu {
     this.nfesRepository.populate(50);
   }
   public void execute() {
-    int selected = this.showStartupMenu();
+    while (true) {
+      int selected = this.showStartupMenu();
 
-    switch (selected) {
-      case 1:
-        Nfe newNfe = new Nfe();
+      switch (selected) {
+        case 1:
+          Nfe newNfe = new Nfe();
 
-        newNfe.create(this.input);
+          newNfe.create(this.input);
 
-        this.nfesRepository.create(newNfe);
-        break;
-      case 2:
-        this.showUpdateNfeMenu();
-        break;
-      case 3:
-        this.showFindNfeMenu();
-        break;
-      case 4:
-        while (true) {
-          try {
-            System.out.println("Digite o número da NF-e");
-            int number = this.input.nextInt();
+          this.nfesRepository.create(newNfe);
+          break;
+        case 2:
+          // TODO
+          this.showUpdateNfeMenu();
+          break;
+        case 3:
+          int option = this.showFindNfeMenu();
+          Nfe nfe;
 
-            this.nfesRepository.exclude(number);
-            break;
-          } catch (InputMismatchException err) {
-            System.out.println("Parece que algo de errado aconteceu, tente novamente.");
-            this.input.next();
+          switch (option) {
+            case 1:
+              int id;
+
+              while (true) {
+                try {
+                  System.out.println("Digite o ID da NFE");
+                  id = this.input.nextInt();
+                  break;
+                } catch (Exception e) {
+                  System.out.println("Parece que você digitou alguma opção errada");
+                }
+              }
+
+              try {
+                nfe = this.nfesRepository.find(id);
+
+                nfe.output();
+              } catch (EntityNotFoundException e) {
+                System.out.println("NF-e não encontrada");
+              }
+              break;
+            case 2:
+              String clientCompanyName;
+
+              while (true) {
+                try {
+                  System.out.println("Digite a razão social do cliente");
+                  clientCompanyName = this.input.next();
+                  break;
+                } catch (Exception e) {
+                  System.out.println("Parece que você digitou alguma opção errada");
+                }
+              }
+
+              try {
+                nfe = this.nfesRepository.findByClientCompanyName(clientCompanyName);
+
+                nfe.output();
+              } catch (EntityNotFoundException e) {
+                System.out.println("NF-e não encontrada");
+              }
+              break;
+            case 3:
+              String cnpjOrCpf;
+
+              while (true) {
+                try {
+                  System.out.println("Digite o CNPJ/CPF do cliente");
+                  cnpjOrCpf = this.input.next();
+                  break;
+                } catch (Exception e) {
+                  System.out.println("Parece que você digitou alguma opção errada");
+                }
+              }
+
+              try {
+                nfe = this.nfesRepository.findByClientCnpjOrCpf(cnpjOrCpf);
+
+                nfe.output();
+              } catch (EntityNotFoundException e) {
+                System.out.println("NF-e não encontrada");
+              }
+                break;
+            case 4:
+              double totalValue;
+
+              while (true) {
+                try {
+                  System.out.println("Digite o valor total da NF-e");
+                  totalValue = this.input.nextDouble();
+                  break;
+                } catch (Exception e) {
+                  System.out.println("Parece que você digitou alguma opção errada");
+                }
+              }
+
+              try {
+                nfe = this.nfesRepository.findByTotalValue(totalValue);
+
+                nfe.output();
+              } catch (EntityNotFoundException e) {
+                System.out.println("NF-e não encontrada");
+              }
+              break;
+            case 5:
+              // do nothing, this option returns to initial menu
+              break;
+            default:
+              // do nothing
+              break;
           }
-        }
-        break;
-      case 5:
-        int number, qty = 0;
+          break;
+        case 4:
+          while (true) {
+            try {
+              System.out.println("Digite o número da NF-e");
+              int number = this.input.nextInt();
 
-        while (true) {
-          try {
-            System.out.println("Digite o número da NF-e inicial");
-            number = this.input.nextInt();
-
-            if (number < 1) {
-              throw new ValidationException("Número da NF-e inválido");
+              this.nfesRepository.exclude(number);
+              break;
+            } catch (InputMismatchException err) {
+              System.out.println("Parece que algo de errado aconteceu, tente novamente.");
+              this.input.next();
             }
-
-            System.out.println("Digite a quantidade de NF-es que deseja visualizar");
-            qty = this.input.nextInt();
-
-            if (qty < 1) {
-              throw new ValidationException("Quantidade de NF-es inválida");
-            }
-            break;
-          } catch (InputMismatchException err) {
-            System.out.println("Parece que algo de errado aconteceu, tente novamente.");
-            this.input.next();
-          } catch (ValidationException err) {
-            System.out.println(err.getMessage() + ", tente novamente.");
           }
-        }
+          break;
+        case 5:
+          int number, qty = 0;
 
-        ArrayList<Nfe> result = this.nfesRepository.findRangeByNumber(number, qty);
+          while (true) {
+            try {
+              System.out.println("Digite o número da NF-e inicial");
+              number = this.input.nextInt();
 
-        result.forEach(Nfe::output);
-        break;
-      default:
-        System.exit(0);
-        break;
+              if (number < 0) {
+                throw new ValidationException("Número da NF-e inválido");
+              }
+
+              System.out.println("Digite a quantidade de NF-es que deseja visualizar");
+              qty = this.input.nextInt();
+
+              if (qty < 1) {
+                throw new ValidationException("Quantidade de NF-es inválida");
+              }
+              break;
+            } catch (InputMismatchException err) {
+              System.out.println("Parece que algo de errado aconteceu, tente novamente.");
+              this.input.next();
+            } catch (ValidationException err) {
+              System.out.println(err.getMessage() + ", tente novamente.");
+            }
+          }
+
+          ArrayList<Nfe> result = this.nfesRepository.findRangeByNumber(number, qty);
+          System.out.println(result.size());
+          result.forEach(Nfe::output);
+          break;
+        default:
+          System.exit(0);
+          break;
+      }
     }
   }
 
