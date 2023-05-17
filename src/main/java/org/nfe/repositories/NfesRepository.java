@@ -1,7 +1,7 @@
 package org.nfe.repositories;
 
 import org.nfe.errors.EntityNotFoundException;
-import org.nfe.implementations.Nfe;
+import org.nfe.implementations.*;
 import org.nfe.interfaces.RepositoryInterface;
 
 import java.util.ArrayList;
@@ -12,7 +12,89 @@ public class NfesRepository implements RepositoryInterface<Nfe> {
 
   public void populate(int qdd) {
     for (int i = 0; i < qdd; i++) {
-      Nfe data = new Nfe();
+      ArrayList<Product> products = new ArrayList<Product>();
+      ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+
+      Vehicle vehicle = new Vehicle(
+              "plate " + i,
+              "uf " + i
+      );
+
+      vehicles.add(vehicle);
+
+      Address address = new Address(
+              "12342324" + i,
+              "312312563" + i,
+              "city " + i,
+              i,
+              "road " + i,
+              "state " + i
+      );
+      Phone phone = new Phone(
+              i * 10,
+              534 * i
+      );
+      ShippingCompany shippingCompany = new ShippingCompany(
+              "company " + i,
+              "state " + i,
+              i * 1200,
+              vehicles,
+              address,
+              phone
+      );
+
+      Product product = new Product();
+      BusinessClient businessClient = new BusinessClient(
+              "company " + i,
+              "cnpj " + i,
+              "state " + i,
+              address,
+              phone
+      );
+      PrivateIndividualClient privateIndividualClient = new PrivateIndividualClient(
+              "name " + i,
+              "cpf " + i,
+              address,
+              phone
+      );
+      Supplier supplier = new Supplier(
+              "cnpj " + i,
+              "company name" + i,
+              "state " + i,
+              address,
+              phone
+      );
+      Shipping shipping = new Shipping(
+              shippingCompany,
+              i * 654,
+              i * 65,
+              businessClient,
+              privateIndividualClient,
+              supplier,
+              vehicle
+      );
+      BankVoucher bankVoucher = new BankVoucher(
+              i * 123,
+              "date " + i,
+              "accessKey " + i,
+              "protocol " + i,
+              "expirationDate " + i,
+              i * 987,
+              i * 1245
+      );
+
+      products.add(product);
+
+      Nfe data = new Nfe(
+              i,
+              products,
+              shipping,
+              address,
+              businessClient,
+              privateIndividualClient,
+              bankVoucher,
+              supplier
+      );
 
       repository.add(data);
     }

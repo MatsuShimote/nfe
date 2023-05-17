@@ -135,6 +135,7 @@ public class Nfe extends Sale {
   }
 
   public void output() {
+//    TODO
     System.out.println("id " + this.id);
     this.supplier.output();
     this.businessClient.output();

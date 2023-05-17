@@ -16,6 +16,23 @@ public class Shipping extends Entity {
 
   public Shipping() {}
 
+  public Shipping(
+          ShippingCompany shippingCompany,
+          double grossWeight,
+          double netWeight,
+          BusinessClient businessClient,
+          PrivateIndividualClient privateIndividualClient,
+          Supplier supplier,
+          Vehicle vehicle) {
+    this.shippingCompany = shippingCompany;
+    this.grossWeight = grossWeight;
+    this.businessClient = businessClient;
+    this.privateIndividualClient = privateIndividualClient;
+    this.supplier = supplier;
+    this.vehicle = vehicle;
+    this.netWeight = netWeight;
+  }
+
   public ShippingCompany getShippingCompany() {
     return shippingCompany;
   }
