@@ -1,8 +1,10 @@
 package org.nfe.implementations;
 
+import org.nfe.abstracts.InputTypes;
 import org.nfe.abstracts.People;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ShippingCompany extends People {
   private ArrayList<Vehicle> vehicles;
@@ -57,6 +59,21 @@ public class ShippingCompany extends People {
 
   public void setAntt(int antt) {
     this.antt = antt;
+  }
+
+  public void create(Scanner input) {
+
+    int antt = (int) this.inputWithoutException(input, "Digite o ANTT", InputTypes.INT);
+    String companyName = (String) this.inputWithoutException(input, "Digite o nome da Transportadora", InputTypes.STRING);
+    String stateSubscription = (String) this.inputWithoutException(input, "Digite a inscricao estadual", InputTypes.STRING);
+
+    this.setAntt(antt);
+    this.setCompanyName(companyName);
+    this.setStateSubscription(stateSubscription);
+//    TODO ignore these setters
+    //    this.setVehicles();
+//    this.setAddress();
+//    this.setPhone();
   }
 
   public void output() {

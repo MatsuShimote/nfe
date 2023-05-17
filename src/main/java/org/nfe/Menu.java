@@ -36,17 +36,55 @@ public class Menu {
           this.nfesRepository.create(newNfe);
           break;
         case 2:
-          // TODO
-          this.showUpdateNfeMenu();
-          break;
-        case 3:
-          int option = this.showFindNfeMenu();
-          Nfe nfe;
+          int option = this.showUpdateNfeMenu();
+
+          int id;
+
+          while (true) {
+            try {
+              System.out.println("Digite o identificador da NFE");
+              id = this.input.nextInt();
+              break;
+            } catch (Exception e) {
+              System.out.println("parece que você digitou um identificador errado, tente novamente");
+            }
+          }
+
+          Nfe nfe = new Nfe();
+
+          try {
+            nfe = this.nfesRepository.find(id);
+          } catch (EntityNotFoundException e) {
+            System.out.println("NFE não encontrada");
+          }
 
           switch (option) {
             case 1:
-              int id;
+              nfe.getBusinessClient().create(this.input);
+              break;
+            case 2:
+              nfe.getBankVoucher().create(this.input);
+              break;
+//            case 3:
+//              nfe.getIm().update();
+//              break;
+            case 3:
+              nfe.getShipping().getShippingCompany().create(this.input);
+              break;
+            case 4:
+              // do nothing, this option returns to initial menu
+              break;
+            default:
+              // do nothing
+              break;
+          }
+          break;
+        case 3:
+          option = this.showFindNfeMenu();
+          nfe = new Nfe();
 
+          switch (option) {
+            case 1:
               while (true) {
                 try {
                   System.out.println("Digite o ID da NFE");
@@ -218,9 +256,9 @@ public class Menu {
       while (true) {
         System.out.println("1. alterar destinatário/remetente");
         System.out.println("2. alterar fatura");
-        System.out.println("3. alterar cálculo do imposto");
-        System.out.println("4. alterar transportadora");
-        System.out.println("5. voltar");
+//        System.out.println("3. alterar cálculo do imposto"); // TODO not works
+        System.out.println("3. alterar transportadora");
+        System.out.println("4. voltar");
 
         try {
           int selected = this.input.nextInt();
